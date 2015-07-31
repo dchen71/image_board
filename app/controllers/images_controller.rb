@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
 
 		if @image.save
 			flash[:success] = "Uploaded image"
-			redirect_to root_page
+			redirect_to root_path
 		else
 			flash[:error] = "Error uploading"
 			render 'index'

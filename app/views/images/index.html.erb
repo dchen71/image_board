@@ -1,0 +1,22 @@
+<div class="container">
+	<% if flash[:success] %>
+	<div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Success!</strong> <%= flash[:success] %>
+    </div>
+    <% end %>
+    <% if flash[:error] %>
+	<div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Warning!</strong> <%= flash[:error] %>
+    </div>
+    <% end %>
+	<div class="upload">
+		<%= form_for @image do |form| %>
+		  <%= form.file_field :pictures, :class=> "col-md-4" %>
+		  <%= form.label :tags, :class=> "pull-left" %>
+		  <%= form.text_field :tags, :class=> "col-md-4" %>
+		  <%= form.submit 'Submit', :class=> "col-md-offset-1" %>
+		<% end %>
+	</div>	
+</div>

@@ -1,1 +1,7 @@
-<p>Show</p>
+<div class="container" id="about-container">
+	<div class="img-show">
+		<%= image_tag @image.pictures.url %>
+		<br>
+		<%= link_to "Full Picture", @image.pictures.url %>
+	</div>
+</div>

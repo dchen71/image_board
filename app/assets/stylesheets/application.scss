@@ -2,9 +2,37 @@
 @import "bootstrap";
 
 /*
-
+Index
  */
+
+.bg-primary{
+	background-color: #C6ADEA;
+}
 
 .upload{
 	margin-top: 50px;
+}
+
+.image-board{
+	margin-top: 50px;
+}
+
+.image-board img{
+	height: 200px;
+	width: 150px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+}
+
+/*
+Show
+ */
+
+#about-container{
+	margin-top: 50px;
+}
+
+.img-show img{
+	height: 50%;
+	width: 50%;
 }

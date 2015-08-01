@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801035719) do
+ActiveRecord::Schema.define(version: 20150801012010) do
 
   create_table "images", force: :cascade do |t|
     t.string   "tags"
+    t.integer  "user_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.string   "pictures_file_name"
@@ -25,11 +26,12 @@ ActiveRecord::Schema.define(version: 20150801035719) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.string   "email"
     t.string   "remember_token"
+    t.integer  "image_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

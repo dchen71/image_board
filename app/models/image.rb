@@ -3,5 +3,6 @@ class Image < ActiveRecord::Base
   validates_attachment_content_type :pictures, :content_type => ["image/jpg", "image/jpeg", "image/png"]
   validates_with AttachmentPresenceValidator, :attributes => :pictures
   belongs_to :user
+  validates_presence_of :user_id
 
 end

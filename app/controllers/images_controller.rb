@@ -1,4 +1,8 @@
 class ImagesController < ApplicationController
+	include SessionsHelper
+
+	before_action :require_login, only: :create
+
 	def index
 		@image = Image.new
 		@images = Image.all
@@ -23,6 +27,13 @@ class ImagesController < ApplicationController
 	private
 
 	def image_params
-		params.require(:image).permit(:pictures, :tags)
+		params.require(:image).permit(:pictures, :tags, :user_id)
+	end
+
+	def require_login
+      unless signed_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
 	end
 end

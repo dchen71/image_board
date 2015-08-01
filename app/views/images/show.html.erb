@@ -4,12 +4,25 @@
 	<div class="img-show pull-left text-center">
 		<%= image_tag @image.pictures.url%>
 		<br>
-		<%= link_to "Full Picture", @image.pictures.url, class: 'pull-left' %>
+		<%= link_to "View Full Picture", @image.pictures.url, class: 'pull-left' %>
 	</div>
 	<div class="tags">
 		<h3>Tags</h3>
+		<%if signed_in? %>
+			<div>
+				<%= form_for @tag do |form| %>
+				  <%= form.text_field :tag, placeholder: "Enter tag" %>
+				  <%= form.hidden_field :image_id, :value => @image.id %>
+				  <%= form.submit 'Submit' %>
+				<% end %>
+			</div>
+		<% else %>
+			<p><%= link_to "Login", login_path %> or <%= link_to "sign up", new_user_path %> to create comments</p>
+		<% end %>
 		<% unless @image.tags.empty? %>
-			<p><%= @image.tags%><p>
+			<% @image.tags.each do |t| %>
+				<p><%= t.tag %><p>
+			<% end %>
 		<% else %>
 			<p>No Tags Yet</p>
 		<% end %>
@@ -17,19 +30,22 @@
 	<div class="comments">
 		<h3>Comments(<%= @image.comments.count %>)</h3>
 		<% if signed_in? %>
-		<div>
-			<%= form_for @comment do |form| %>
-			  <%= form.text_area :content, placeholder: "Enter comments", style:"resize:none;" %>
-			  <%= form.hidden_field :user_id, :value => current_user.id %>
-			  <%= form.hidden_field :image_id, :value => @image.id %>
-			  <%= form.submit 'Submit' %>
-			<% end %>
-		</div>
+			<div>
+				<%= form_for @comment do |form| %>
+				  <%= form.text_area :content, placeholder: "Enter comments", style:"resize:none;" %>
+				  <%= form.hidden_field :user_id, :value => current_user.id %>
+				  <%= form.hidden_field :image_id, :value => @image.id %>
+				  <%= form.submit 'Submit' %>
+				<% end %>
+			</div>
+		<else>
+			<p><%= link_to "Login", login_path %> or <%= link_to "sign up", new_user_path %> to create comments</p>
 		<% end %>
 		<div class="all-comments">
 			<% @image.comments.each do |c| %>
 			<div class="comment well">
-				<p><%= User.find_by(id: c.user_id).username %></p>
+				<p class="pull-right"><%= c.created_at %></p>
+				<strong><p><%= User.find_by(id: c.user_id).username %></p></strong>
 				<p><%= c.content %></p>
 			</div>
 			<% end %>

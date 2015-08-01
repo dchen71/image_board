@@ -23,6 +23,7 @@ class ImagesController < ApplicationController
 	def show
 		@image = Image.find_by(id: params[:id])
 		@comment = Comment.new
+		@tag = Tag.new
 	end
 
 	private

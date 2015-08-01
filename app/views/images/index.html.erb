@@ -6,8 +6,10 @@
 <% if signed_in? %>
 <%= link_to "Logout", logout_path %>
 <% end %>
+
 <div class="container">
 	<h1 class="text-center">IMAGINE BOARD</h1>
+	<hr>
 	<% unless flash[:error].nil? %>
 	<div class="alert alert-danger">
 		<button type="button" class="close" data-dismiss="alert" >×</button>
@@ -25,9 +27,7 @@
 	<div class="upload">
 		<%= form_for @image do |form| %>
 		  <%= form.file_field :pictures, :class=> "col-md-4" %>
-		  <%= form.label :tags, :class=> "pull-left" %>
 		  <%= form.hidden_field :user_id, :value => current_user.id %>
-		  <%= form.text_field :tags, :class=> "col-md-4" %>
 		  <%= form.submit 'Submit', :class=> "col-md-offset-1" %>
 		<% end %>
 	</div>

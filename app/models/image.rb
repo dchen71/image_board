@@ -5,5 +5,6 @@ class Image < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user_id
   has_many :comments
+  has_many :tags
 
 end

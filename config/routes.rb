@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :images, except: [:edit, :update, :destroy]
   resources :users, only: [:new, :create, :show]
   resources :comments, only: [:create]
+  resources :tags, only: [:create, :show]
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

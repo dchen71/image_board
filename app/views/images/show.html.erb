@@ -6,7 +6,7 @@
 	</div>
 	<div class="tags">
 		<h3>Tags</h3>
-		<% if @image.tags.nil? %>
+		<% unless @image.tags.empty? %>
 			<p><%= @image.tags%><p>
 		<% else %>
 			<p>No Tags Yet</p>

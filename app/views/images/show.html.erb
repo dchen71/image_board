@@ -1,3 +1,5 @@
+<% provide(:title,"Image") %>
+
 <div class="container" id="about-container">
 	<div class="img-show pull-left text-center">
 		<%= image_tag @image.pictures.url%>
@@ -11,5 +13,26 @@
 		<% else %>
 			<p>No Tags Yet</p>
 		<% end %>
+	</div>
+	<div class="comments">
+		<h3>Comments(<%= @image.comments.count %>)</h3>
+		<% if signed_in? %>
+		<div>
+			<%= form_for @comment do |form| %>
+			  <%= form.text_area :content, placeholder: "Enter comments", style:"resize:none;" %>
+			  <%= form.hidden_field :user_id, :value => current_user.id %>
+			  <%= form.hidden_field :image_id, :value => @image.id %>
+			  <%= form.submit 'Submit' %>
+			<% end %>
+		</div>
+		<% end %>
+		<div class="all-comments">
+			<% @image.comments.each do |c| %>
+			<div class="comment well">
+				<p><%= User.find_by(id: c.user_id).username %></p>
+				<p><%= c.content %></p>
+			</div>
+			<% end %>
+		</div>
 	</div>
 </div>

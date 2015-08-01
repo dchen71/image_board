@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username,:password_digest, :email
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  has_many :comments
 
   def User.new_remember_token
   	SecureRandom.urlsafe_base64

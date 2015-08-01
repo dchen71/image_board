@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'images#index'
   resources :images, except: [:edit, :update, :destroy]
   resources :users, only: [:new, :create, :show]
+  resources :comments, only: [:create]
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

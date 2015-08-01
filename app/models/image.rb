@@ -4,5 +4,6 @@ class Image < ActiveRecord::Base
   validates_with AttachmentPresenceValidator, :attributes => :pictures
   belongs_to :user
   validates_presence_of :user_id
+  has_many :comments
 
 end

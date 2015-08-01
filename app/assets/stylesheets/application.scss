@@ -1,12 +1,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body{
+	background-color: #C6ADEA;
+}
+
 /*
 Index
  */
 
-.bg-primary{
-	background-color: #C6ADEA;
+.container{
+	background-color: white;
+	border: 2px solid;
+	border-radius: 25px;
 }
 
 .upload{
@@ -35,4 +41,5 @@ Show
 .img-show img{
 	height: 50%;
 	width: 50%;
+	margin: 50px 5px 5px 5px;
 }

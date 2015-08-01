@@ -1,7 +1,15 @@
 <div class="container" id="about-container">
-	<div class="img-show">
-		<%= image_tag @image.pictures.url %>
+	<div class="img-show pull-left text-center">
+		<%= image_tag @image.pictures.url%>
 		<br>
-		<%= link_to "Full Picture", @image.pictures.url %>
+		<%= link_to "Full Picture", @image.pictures.url, class: 'pull-left' %>
+	</div>
+	<div class="tags">
+		<h3>Tags</h3>
+		<% if @image.tags.nil? %>
+			<p><%= @image.tags%><p>
+		<% else %>
+			<p>No Tags Yet</p>
+		<% end %>
 	</div>
 </div>

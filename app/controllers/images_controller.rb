@@ -4,8 +4,14 @@ class ImagesController < ApplicationController
 	before_action :require_login, only: :create
 
 	def index
+		@tags = Tag.take(10)
 		@image = Image.new
-		@images = Image.all
+		@tag = Tag.new
+		if params[:tag]
+			@images = Image.find_by(id: Tag.find_by(tag:params[:tag]).image_id)
+		else
+			@images = Image.all
+		end
 	end
 
 	def create
@@ -16,7 +22,7 @@ class ImagesController < ApplicationController
 			redirect_to root_path
 		else
 			flash[:error] = "Error uploading"
-			render 'index'
+			redirect_to :back
 		end
 	end
 
@@ -24,12 +30,13 @@ class ImagesController < ApplicationController
 		@image = Image.find_by(id: params[:id])
 		@comment = Comment.new
 		@tag = Tag.new
+		@tags = @image.tags
 	end
 
 	private
 
 	def image_params
-		params.require(:image).permit(:pictures, :tags, :user_id)
+		params.require(:image).permit(:pictures, :user_id)
 	end
 
 	def require_login

@@ -7,14 +7,33 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<div class="wrapper">
-	<div id="sidebar-wrapper">
-		<h1>ImagineBoard</h1>
+<div class="col-md-12" id="content">
+	<div class="col-md-2"  id="sidebar-wrapper">
+		<div id="sidebar">
+			<h1>ImagineBoard</h1>
+			<%= form_for @tag, :method => 'get'  do |t| %>
+			  <%= t.text_field :tag, placeholder: "Search tags" %>
+			  <%= t.submit 'Submit' %>
+			<% end %>
+			<% @tags.each do |t| %>
+				<p><%= link_to t.tag, tag_path(t.id) %><p>
+			<% end %>
+		</div>
 	</div>
+
+	<div class="signin-wrapper pull-right">
+		<% unless signed_in? %>
+			<%= link_to "New User", new_user_path %>
+			<%= link_to "Login", login_path %>
+		<% else %>
+			<%= link_to "Logout", logout_path %>
+		<% end %>	
+	</div>
+	
+	<div id="main">
+		<%= yield %>
+	</div>
+
 </div>
-
-<%= yield %>
-
 </body>
 </html>

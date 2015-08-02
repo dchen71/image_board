@@ -5,25 +5,37 @@ class TagsController < ApplicationController
 
 	def create
 		@tag = Tag.new(tag_params)
+		@image = Image.find_by(params[:image_id])
 
 		if @tag.save
-			flash[:success] = "SUccessfully added tag"
+			Tagging.create(tag_id: @tag.id, image_id: @image.id)
+			flash.now[:success] = "Successfully added tag"
 			redirect_to :back
 		else
-			flash.now[:error] = "Error adding tag"
-			redirect_to :back
+			@oldtag = Tag.find_by(tag: @tag.tag)
+			unless @oldtag.nil?
+				Tagging.create(tag_id: @oldtag.id, image_id: @image.id)
+				flash[:success] = "Successfully added tag"
+				redirect_to :back
+			else
+				flash[:error] = "Error adding tag"
+				redirect_to :back
+			end
 		end
 	end
 
 	def show
 		@tag = Tag.find_by(id: params[:id])
+		@image = Image.new
 		@images = Image.find_by(id: @tag.image_id)
+		@tags = @images.tags
 	end
 
 	private
 	def tag_params
-		params.require(:tag).permit(:tag, :image_id)
+		params.require(:tag).permit(:tag)
 	end
+
 
 	def require_login
       unless signed_in?

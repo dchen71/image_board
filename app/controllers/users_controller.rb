@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 	def new
 		@user = User.new
+		@tag = Tag.new
+		@tags = Tag.take(10)
 	end
 
 	def create
@@ -10,8 +12,8 @@ class UsersController < ApplicationController
 			flash[:success] = "User successfully created"
 			redirect_to root_path
 		else
-			flash.now[:error] = "Error creating user"
-			render 'new'
+			flash[:error] = "Error creating user"
+			redirect_to new_user_path
 		end
 	end
 

@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
 	include SessionsHelper
 	def new
+		@tag = Tag.new
+		@tags = Tag.take(10)
 	end
 
 	def create

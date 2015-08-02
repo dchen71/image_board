@@ -1,20 +1,24 @@
 <% provide(:title, 'Login') %>
 
-<h1>Login</h1>
+<div>
+  <h1>Login</h1>
 
-<%= form_for login_path, method: :post do %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
-    <br/>
-  </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-    <br/>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Login" %>
-  </div>
-<% end %>
+  <%= render ('shared/errors') %>
 
+  <%= form_for login_path, method: :post do %>
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+      <br/>
+    </div>
+    <div class="field">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+      <br/>
+    </div>
+    <div class="actions">
+      <%= submit_tag "Login", class: 'btn btn-standard' %>
+    </div>
+  <% end %>
+
+</div>

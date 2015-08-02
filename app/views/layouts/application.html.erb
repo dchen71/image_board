@@ -15,9 +15,11 @@
 			  <%= t.text_field :tag, placeholder: "Search tags" %>
 			  <%= t.submit 'Submit' %>
 			<% end %>
-			<% @tags.each do |t| %>
-				<p><%= link_to t.tag, tag_path(t.id) %><p>
-			<% end %>
+			<ul class="list-unstyled">
+				<% @tags.each do |t| %>
+					<li><%= link_to t.tag, tag_path(t.id) %><li>
+				<% end %>
+			</ul>
 		</div>
 	</div>
 

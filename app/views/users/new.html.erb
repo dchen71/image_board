@@ -1,20 +1,8 @@
 <%= provide(:title, "New User") %>
 
-<div class="container">
-	<h1 class="text-center">IMAGINE BOARD</h1>
-	<% unless flash[:error].nil? %>
-	<div class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert" >×</button>
-		<strong><%= flash[:error] %></strong>
-	</div>
-	<% end %>
-        
-	<% if flash[:success] %>
-		<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert" >×</button>
-			<strong><%= flash[:success] %></strong>
-		</div>
-	<% end %>
+<div>
+	<h3>New User</h3>
+	<%= render 'shared/errors' %>
 	<div class="new-user">
 		<%= form_for @user do |f| %>
 		  <%= f.label :username%>

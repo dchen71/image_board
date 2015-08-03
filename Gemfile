@@ -25,13 +25,14 @@ gem 'bootstrap-sass'
 gem 'paperclip'
 gem 'bcrypt'
 gem 'faker'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  gem 'pg'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

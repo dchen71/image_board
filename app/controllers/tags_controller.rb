@@ -5,7 +5,7 @@ class TagsController < ApplicationController
 
 	def create
 		@tag = Tag.new(tag_params)
-		@image = Image.find_by(image_params)
+		@image = Image.find_by(id: tag_params)
 
 		if @tag.save
 			Tagging.create(tag_id: @tag.id, image_id: @image.id)
@@ -40,6 +40,24 @@ class TagsController < ApplicationController
 			end
 		end
 		@tags = @tags.take(10)
+	end
+
+	def search
+		@tag = Tag.find_by(tag: params[:tag])
+		
+		unless @tag.nil?
+			@images = @tag.images
+			@tags = Set.new
+			@images.each do |i|
+				i.tags.each do |j|
+					@tags.add(j)
+				end
+			end
+			@tags = @tags.take(10)
+		else
+			@tags = Tag.take(10)
+			@images = false
+		end
 	end
 
 	private

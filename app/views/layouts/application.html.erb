@@ -11,9 +11,10 @@
 	<div class="col-md-2"  id="sidebar-wrapper">
 		<div id="sidebar">
 			<h1><%= link_to 'ImagineBoard', root_path %></h1>
-			<%= form_for @tag, :method => 'get'  do |t| %>
-			  <%= t.text_field :tag, placeholder: "Search tags" %>
-			  <%= t.submit 'Submit' %>
+			<%= form_tag('/search',method: 'get') do  %>
+			  <%= label_tag(:tag, 'Search') %>
+			  <%= text_field_tag :tag %>
+			  <%= submit_tag 'Submit' %>
 			<% end %>
 			<ul class="list-unstyled">
 				<% @tags.each do |t| %>

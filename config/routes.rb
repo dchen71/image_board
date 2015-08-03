@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:create]
   resources :tags, only: [:create, :show]
 
+  get '/search' => 'tags#search'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get '/logout' => 'sessions#destroy', via: 'delete'

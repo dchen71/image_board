@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#Create users
+15.times do |n|
+  name  = Faker::Internet.user_name
+  email = "example-#{n+1}@yahoo.com"
+  password = "password"
+  User.create!(username: name,
+               email: email,
+               password:              password,
+               password_confirmation: password,)
+end
+
+#Create images
+users = User.take(8)
+start = 1
+users.each do |user|
+	link = "#{Rails.root}/seed/k" + start.to_s + ".jpg"
+	user.images.create(:pictures => File.new(link))
+	start += 1
+end
+User.find_by(id: 2).images.create(:pictures => File.new("#{Rails.root}/seed/s1.jpg"))
+User.first.images.create(:pictures => File.new("#{Rails.root}/seed/s2.jpg"))
+
+#Create comments
+images = Image.take(5)
+users = User.take(5)
+images.each do |image|
+	users.each do |user|
+		content = Faker::Lorem.sentence(1)
+		image.comments.create!(content: content, user_id: user.id)
+	end
+end
+
+#Create tags
+images = Image.take(5)
+images.each do |image|
+	(1..2).each do |i|
+		tag = Faker::Team.creature
+		Tag.create!(tag: tag)
+		Tagging.create!(image_id: image.id, tag_id: Tag.last.id)
+	end
+end

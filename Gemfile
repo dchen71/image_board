@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'paperclip'
 gem 'bcrypt'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -33,6 +34,12 @@ group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+  gem 'puma'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

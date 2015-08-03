@@ -1,29 +1,9 @@
-<div class="container">
+<% provide(:title, @user.username) %>
+
+<div class="col-md-10">
 	<h1 class="text-center">IMAGINE BOARD</h1>
-	<% unless flash[:error].nil? %>
-	<div class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert" >×</button>
-		<strong><%= flash[:error] %></strong>
-	</div>
-	<% end %>
-        
-	<% if flash[:success] %>
-		<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert" >×</button>
-			<strong><%= flash[:success] %></strong>
-		</div>
-	<% end %>
-	<div class="upload">
-		<%= form_for @image do |form| %>
-		  <%= form.file_field :pictures, :class=> "col-md-4" %>
-		  <%= form.label :tags, :class=> "pull-left" %>
-		  <%= form.text_field :tags, :class=> "col-md-4" %>
-		  <%= form.submit 'Submit', :class=> "col-md-offset-1" %>
-		<% end %>
-	</div>
-	<div class="image-board">
-		<% @images.each do |i| %>
-			<%= link_to image_tag(i.pictures.url),image_path(i.id)  %>
-		<% end %>	
-	</div>
+	<hr>
+	<h3>All pictures posted by <strong><%= @user.username %>(<%= @user.images.count%>)</strong></h3>
 </div>
+
+<%= render 'shared/images' %>

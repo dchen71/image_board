@@ -43,7 +43,7 @@
 		<h3>Comments(<%= @image.comments.count %>)</h3>
 		<% if signed_in? %>
 			<div>
-				<%= form_for @comment do |form| %>
+				<%= form_for(@comment) do |form| %>
 				  <%= form.text_area :content, placeholder: "Enter comments", style:"resize:none;", class: 'col-md-4' %>
 				  <%= form.hidden_field :user_id, :value => current_user.id %>
 				  <%= form.hidden_field :image_id, :value => @image.id %>
@@ -55,14 +55,6 @@
 		<% else %>
 			<p><%= link_to "Login", login_path %> or <%= link_to "sign up", new_user_path %> to create comments</p>
 		<% end %>
-		<div class="all-comments">
-			<% @image.comments.each do |c| %>
-			<div class="comment well">
-				<p class="pull-right"><%= c.created_at %></p>
-				<strong><p><%= link_to User.find_by(id: c.user_id).username, user_path(c.user_id) %></p></strong>
-				<p><%= c.content %></p>
-			</div>
-			<% end %>
-		</div>
+		<%= render 'comments' %>
 	</div>
 </div>

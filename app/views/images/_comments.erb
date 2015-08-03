@@ -1,0 +1,9 @@
+<div class="all-comments">
+	<% @image.comments.each do |c| %>
+	<div class="comment well">
+		<p class="pull-right"><%= c.created_at %></p>
+		<strong><p><%= link_to User.find_by(id: c.user_id).username, user_path(c.user_id) %></p></strong>
+		<p><%= c.content %></p>
+	</div>
+	<% end %>
+</div>

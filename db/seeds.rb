@@ -32,10 +32,14 @@ end
 
 #Create tags
 images = Image.take(5)
+Tag.create!(tag:'store')
+Tag.create!(tag:'cheese')
+Tag.create!(tag:'Strawberry')
+Tag.create!(tag:'chocolate')
+tags = Tag.take(4)
+
 images.each do |image|
-	(1..2).each do |i|
-		tag = Faker::Team.creature
-		Tag.create!(tag: tag)
-		Tagging.create!(image_id: image.id, tag_id: Tag.last.id)
+	tags.each do |tag|
+		Tagging.create!(image_id: image.id, tag_id: tag.id)
 	end
 end

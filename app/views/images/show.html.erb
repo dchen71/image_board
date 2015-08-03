@@ -1,6 +1,15 @@
 <% provide(:title,"Image") %>
 
-<div class="container" id="about-container">
+<div class="col-md-10">
+	<h1 class="text-center">IMAGINE BOARD</h1>
+	<hr>
+</div>
+
+<div class="col-md-10" id="about-container">
+	<div class='img-header'>
+		<%= link_to User.find_by(id: @image.user_id).username, user_path(@image.user_id) , class: "pull-left"%>
+		<p class="pull-right"><%= @image.created_at %></p>
+	</div>
 	<div class="img-show pull-left text-center">
 		<%= image_tag @image.pictures.url%>
 		<br>

@@ -5,7 +5,7 @@ class TagsController < ApplicationController
 
 	def create
 		@tag = Tag.new(tag_params)
-		@image = Image.find_by(id: tag_params)
+		@image = Image.find_by(id: @tag.image_id)
 
 		if @tag.save
 			Tagging.create(tag_id: @tag.id, image_id: @image.id)
@@ -62,13 +62,12 @@ class TagsController < ApplicationController
 
 	private
 	def tag_params
-		params.require(:tag).permit(:tag)
+		params.require(:tag).permit(:tag, :image_id)
 	end
 
 	def image_params
 		params.permit(:image_id)
 	end
-
 
 	def require_login
       unless signed_in?

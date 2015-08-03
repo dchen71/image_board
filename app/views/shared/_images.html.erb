@@ -1,17 +1,7 @@
 <div class="col-md-10">
-	<h1 class="text-center">IMAGINE BOARD</h1>
-	<hr>
+
 	<%= render 'shared/errors' %>
-	<% if signed_in? %>
-	<div class="upload">
-		<%= form_for @image do |form| %>
-		  <p>Upload Image</p>
-		  <%= form.file_field :pictures %>
-		  <%= form.hidden_field :user_id, :value => current_user.id %>
-		  <%= form.submit 'Submit'%>
-		<% end %>
-	</div>
-	<% end %>
+	
 	<div class="image-board">
 		<% unless @images.nil? %>
 			<% @images.each do |i| %>

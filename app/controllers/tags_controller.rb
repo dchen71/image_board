@@ -32,8 +32,14 @@ class TagsController < ApplicationController
 	def show
 		@tag = Tag.find_by(id: params[:id])
 		@image = Image.new
-		@images = Image.find_by(id: @tag.image_id)
-		@tags = @images.tags
+		@images = @tag.images
+		@tags = Set.new
+		@images.each do |i|
+			i.tags.each do |j|
+				@tags.add(j)
+			end
+		end
+		@tags = @tags.take(10)
 	end
 
 	private

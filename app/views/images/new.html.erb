@@ -1,54 +1,15 @@
-<% provide(:title,"Image") %>
+<% provide(:title,"Upload") %>
 
-<div class="container" id="about-container">
-	<div class="img-show pull-left text-center">
-		<%= image_tag @image.pictures.url%>
-		<br>
-		<%= link_to "View Full Picture", @image.pictures.url, class: 'pull-left' %>
-	</div>
-	<div class="tags">
-		<h3>Tags</h3>
-		<%if signed_in? %>
-			<div>
-				<%= form_for @tag do |form| %>
-				  <%= form.text_field :tag, placeholder: "Enter tag, maximum 20 characters" %>
-				  <%= form.hidden_field :image_id, :value => @image.id %>
-				  <%= form.submit 'Submit' %>
-				<% end %>
-			</div>
-		<% else %>
-			<p><%= link_to "Login", login_path %> or <%= link_to "sign up", new_user_path %> to create comments</p>
-		<% end %>
-		<% unless @image.tags.empty? %>
-			<% @image.tags.each do |t| %>
-				<p><%= t.tag %><p>
-			<% end %>
-		<% else %>
-			<p>No Tags Yet</p>
-		<% end %>
-	</div>
-	<div class="comments">
-		<h3>Comments(<%= @image.comments.count %>)</h3>
-		<% if signed_in? %>
-			<div>
-				<%= form_for @comment do |form| %>
-				  <%= form.text_area :content, placeholder: "Enter comments", style:"resize:none;" %>
-				  <%= form.hidden_field :user_id, :value => current_user.id %>
-				  <%= form.hidden_field :image_id, :value => @image.id %>
-				  <%= form.submit 'Submit' %>
-				<% end %>
-			</div>
-		<else>
-			<p><%= link_to "Login", login_path %> or <%= link_to "sign up", new_user_path %> to create comments</p>
-		<% end %>
-		<div class="all-comments">
-			<% @image.comments.each do |c| %>
-			<div class="comment well">
-				<p class="pull-right"><%= c.created_at %></p>
-				<strong><p><%= User.find_by(id: c.user_id).username %></p></strong>
-				<p><%= c.content %></p>
-			</div>
-			<% end %>
-		</div>
-	</div>
+<div class="col-md-10">
+	<h1 class="text-center">IMAGINE BOARD</h1>
+	<hr>
+	<h3>Upload Image</h3>
+</div>
+
+<div class="upload">
+	<%= form_for @image do |form| %>
+	  <%= form.file_field :pictures %>
+	  <%= form.hidden_field :user_id, :value => current_user.id %>
+	  <%= form.submit 'Submit'%>
+	<% end %>
 </div>

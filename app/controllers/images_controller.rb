@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 	include SessionsHelper
 
-	before_action :require_login, only: :create
+	before_action :require_login, only: [:create,:new]
 
 	def index
 		@tags = Tag.take(10)
@@ -24,6 +24,12 @@ class ImagesController < ApplicationController
 			flash[:error] = "Error uploading"
 			redirect_to :back
 		end
+	end
+
+	def new
+		@tags = Tag.take(10)
+		@image = Image.new
+		@tag = Tag.new
 	end
 
 	def show

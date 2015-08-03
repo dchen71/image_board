@@ -12,18 +12,18 @@
 		<%if signed_in? %>
 			<div>
 				<%= form_for @tag do |form| %>
-				  <%= form.text_field :tag, placeholder: "Enter tag, maximum 20 characters" %>
+				  <%= form.text_field :tag, placeholder: "Enter tag, maximum 20 characters", class: 'col-md-4' %>
 				  <%= form.hidden_field :image_id, :value => @image.id %>
 				  <%= form.submit 'Submit' %>
 				<% end %>
 			</div>
 		<% else %>
-			<p><%= link_to "Login", login_path %> or <%= link_to "sign up", new_user_path %> to create comments</p>
+			<p><%= link_to "Login", login_path %> or <%= link_to "sign up", new_user_path %> to create tags</p>
 		<% end %>
 		<% unless @image.tags.empty? %>
 				<ul class="list-inline">
 			<% @image.tags.each do |t| %>
-					<li><%= t.tag %><li>
+					<li><%= link_to t.tag, tag_path(t.id) %><li>
 			<% end %>
 				<ul/>
 		<% else %>
@@ -50,7 +50,7 @@
 			<% @image.comments.each do |c| %>
 			<div class="comment well">
 				<p class="pull-right"><%= c.created_at %></p>
-				<strong><p><%= User.find_by(id: c.user_id).username %></p></strong>
+				<strong><p><%= link_to User.find_by(id: c.user_id).username, user_path(c.user_id) %></p></strong>
 				<p><%= c.content %></p>
 			</div>
 			<% end %>

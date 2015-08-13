@@ -17,6 +17,7 @@
 	</div>
 	<div class="tags">
 		<h3>Tags</h3>
+		<hr>
 		<%= render 'shared/errors' %>
 		<%if signed_in? %>
 			<div>
@@ -32,7 +33,7 @@
 		<% unless @image.tags.empty? %>
 				<ul class="list-inline">
 			<% @image.tags.each do |t| %>
-					<li><%= link_to t.tag, tag_path(t.id) %><li>
+					<li><%= link_to t.tag, tag_path(t.id), class: 'tag' %><li>
 			<% end %>
 				<ul/>
 		<% else %>
@@ -41,6 +42,7 @@
 	</div>
 	<div class="comments">
 		<h3>Comments(<%= @image.comments.count %>)</h3>
+		<hr>
 		<% if signed_in? %>
 			<div>
 				<%= form_for(@comment) do |form| %>

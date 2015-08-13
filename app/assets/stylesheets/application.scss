@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$lightblue: #dae5e8;
+
 body{
 	background-color: #C6ADEA;
 }
@@ -69,4 +71,14 @@ Show
 	height: 50%;
 	width: 50%;
 	margin: 50px 5px 5px 5px;
+}
+
+.tag{
+	border: 1px solid black;
+	background-color: white;
+	border-radius: 5px;
+	padding: 2px 2px 2px 2px;
+	&:hover{
+		background-color: $lightblue;
+	}
 }

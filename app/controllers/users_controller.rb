@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 			redirect_to root_path
 		else
 			flash[:error] = "Error creating user"
-			redirect_to new_user_path
+			@tags = Tag.take(10)
+			render 'new'
 		end
 	end
 

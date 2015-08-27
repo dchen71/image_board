@@ -27,7 +27,7 @@ input{
 	margin-left: 20px;
 	&[type='submit']{
 		margin-left: 0;
-		&:not(#search-submit){
+		&:not(#search-submit, #submit-comment, #submit_tag){
 			margin-top: 20px;
 		}
 	}
@@ -98,6 +98,14 @@ Show
 	&:hover{
 		background-color: $lightblue;
 	}
+}
+
+#tag_tag{
+	margin-left: 0;
+}
+
+.tag-list{
+	margin-top: 20px;
 }
 
 /*

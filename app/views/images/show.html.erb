@@ -24,14 +24,14 @@
 				<%= form_for @tag do |form| %>
 				  <%= form.text_field :tag, placeholder: "Enter tag, maximum 20 characters", class: 'col-md-4 col-xs-4' %>
 				  <%= form.hidden_field :image_id, :value => @image.id %>
-				  <%= form.submit 'Submit' %>
+				  <%= form.submit 'Submit', id: 'submit-tag' %>
 				<% end %>
 			</div>
 		<% else %>
 			<p><%= link_to "Login", login_path %> or <%= link_to "sign up", new_user_path %> to create tags</p>
 		<% end %>
 		<% unless @image.tags.empty? %>
-				<ul class="list-inline">
+			<ul class="list-inline tag-list">
 			<% @image.tags.each do |t| %>
 					<li><%= link_to t.tag, tag_path(t.id), class: 'tag' %><li>
 			<% end %>
@@ -50,7 +50,7 @@
 				  <%= form.hidden_field :user_id, :value => current_user.id %>
 				  <%= form.hidden_field :image_id, :value => @image.id %>
 				  <br>
-				  <%= form.submit 'Submit' %>
+				  <%= form.submit 'Submit', id:'submit-comment' %>
 				  <hr>
 				<% end %>
 			</div>

@@ -2,6 +2,7 @@
 @import "bootstrap";
 
 $lightblue: #dae5e8;
+$lightred: rgb(255, 51, 0);
 
 body{
 	background-color: #C6ADEA;
@@ -95,5 +96,17 @@ Show
 	padding: 2px 2px 2px 2px;
 	&:hover{
 		background-color: $lightblue;
+	}
+}
+
+/*
+Users
+ */
+
+#error_explanation{
+	border: 1px dotted gray;
+	color: $lightred;
+	h4{
+		color: black;
 	}
 }

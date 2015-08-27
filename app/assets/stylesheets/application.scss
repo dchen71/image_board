@@ -22,6 +22,16 @@ label{
 	width: 100px;
 }
 
+input{
+	margin-left: 20px;
+	&[type='submit']{
+		margin-left: 0;
+		&:not(#search-submit){
+			margin-top: 20px;
+		}
+	}
+}
+
 /*
 Sidebar
  */
@@ -37,6 +47,11 @@ Sidebar
 #sidebar{
 	height: 100%;
 }
+
+#tag{
+	margin-left: 0;
+}
+
 
 /*
 Index

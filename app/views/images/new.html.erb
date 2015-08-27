@@ -7,6 +7,9 @@
 </div>
 
 <div class="upload">
+	<div class="col-md-8 col-xs-8">
+		<%= render 'shared/errors' %>
+	</div>
 	<%= form_for @image do |form| %>
 	  <%= form.file_field :pictures %>
 	  <%= form.hidden_field :user_id, :value => current_user.id %>

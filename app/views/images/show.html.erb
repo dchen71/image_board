@@ -1,11 +1,11 @@
 <% provide(:title,"Image") %>
 
-<div class="col-md-10">
+<div class="col-md-10 col-xs-10">
 	<h1 class="text-center">IMAGINE BOARD</h1>
 	<hr>
 </div>
 
-<div class="col-md-10" id="about-container">
+<div class="col-md-10 col-xs-10" id="about-container">
 	<div class='img-header'>
 		<%= link_to User.find_by(id: @image.user_id).username, user_path(@image.user_id) , class: "pull-left"%>
 		<p class="pull-right"><%= @image.created_at %></p>
@@ -22,7 +22,7 @@
 		<%if signed_in? %>
 			<div>
 				<%= form_for @tag do |form| %>
-				  <%= form.text_field :tag, placeholder: "Enter tag, maximum 20 characters", class: 'col-md-4' %>
+				  <%= form.text_field :tag, placeholder: "Enter tag, maximum 20 characters", class: 'col-md-4 col-xs-4' %>
 				  <%= form.hidden_field :image_id, :value => @image.id %>
 				  <%= form.submit 'Submit' %>
 				<% end %>
@@ -46,7 +46,7 @@
 		<% if signed_in? %>
 			<div>
 				<%= form_for(@comment) do |form| %>
-				  <%= form.text_area :content, placeholder: "Enter comments", style:"resize:none;", class: 'col-md-4' %>
+				  <%= form.text_area :content, placeholder: "Enter comments", style:"resize:none;", class: 'col-md-4 col-xs-4' %>
 				  <%= form.hidden_field :user_id, :value => current_user.id %>
 				  <%= form.hidden_field :image_id, :value => @image.id %>
 				  <br>

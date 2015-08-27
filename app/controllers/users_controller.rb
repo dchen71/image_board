@@ -12,7 +12,6 @@ class UsersController < ApplicationController
 			flash[:success] = "User successfully created"
 			redirect_to root_path
 		else
-			flash[:error] = "Error creating user"
 			@tags = Tag.take(10)
 			render 'new'
 		end

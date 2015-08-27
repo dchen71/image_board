@@ -4,6 +4,14 @@
 $lightblue: #dae5e8;
 $lightred: rgb(255, 51, 0);
 
+$desktop-width: 1280px;
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
 body{
 	background-color: #C6ADEA;
 }
@@ -16,6 +24,9 @@ body{
 #main{
 	position: relative;
 	margin-left: 30%;
+	@include desktop{
+		margin-left: 20%;
+	}
 }
 
 

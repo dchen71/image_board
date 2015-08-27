@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
 		if @user && @user.authenticate(params[:password])
 			flash[:success] = "Successfully signed in"
 			sign_in @user
+			@tags = Tag.take(10)
 			redirect_to root_path
 		else
 			flash.now[:error] = "Invalid email/password combination"

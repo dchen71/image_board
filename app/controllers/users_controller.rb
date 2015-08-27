@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
 		if @user.save
 			flash[:success] = "User successfully created"
+			@tags = Tag.take(10)
 			redirect_to root_path
 		else
 			@tags = Tag.take(10)

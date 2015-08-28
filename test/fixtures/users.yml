@@ -5,13 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 user1: 
+  id: 1
   username: peter
   password_digest: password
   email: sdfoishdf@coo.com
-  image_id: 1
   
 user2: 
+  id: 2
   username: jogh
   password_digest: password
   email: sdfoish2df@coo.com
-  image_id: 2
